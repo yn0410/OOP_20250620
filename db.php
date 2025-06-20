@@ -119,22 +119,22 @@ class DB{
     回傳: 查詢結果的關聯式陣列
     */
     function all($array=null, $str=null){
-    $sql="SELECT * FROM $this->table ";
+        $sql="SELECT * FROM $this->table ";
 
-    
-        if(is_array($array)){
-            $tmp=arr2sql($array);
-            $sql=$sql ." WHERE ".join(" AND ", $tmp);
-        }else{
-            $sql .=$array;
-        }
-        $sql .=$str;
-    
+        
+            if(is_array($array)){
+                $tmp=arr2sql($array);
+                $sql=$sql ." WHERE ".join(" AND ", $tmp);
+            }else{
+                $sql .=$array;
+            }
+            $sql .=$str;
+        
 
-    // echo $sql;
-    $rows=$this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    return $rows;
-}
+        // echo $sql;
+        $rows=$this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    }
 
 }
 
