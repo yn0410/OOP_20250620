@@ -101,5 +101,45 @@ function del($table, $id){
     return $pdo->exec($sql);
 }
 
+class DB{
+    private $pdo;
+    private $dsn="mysql:host=localhost;dbname=store;charset=utf8";
+    private $table;
+    public function __construct($table){
+        $this->table=$table;
+        $this->pdo=new PDO($this->dsn, 'root', '');        
+    }
+
+
+    /* 之前老師讓AI寫的註解
+    all($table, $array = null, $str = null)
+    $table: 資料表名稱 (string)
+    $array: 條件陣列 (array|null)，可選，若為陣列則產生 WHERE 條件
+    $str: 其他SQL語法 (string|null)，可選，附加在SQL語句後
+    回傳: 查詢結果的關聯式陣列
+    */
+    function all($array=null, $str=null){
+    $sql="SELECT * FROM $this->table ";
+
+    
+        if(is_array($array)){
+            $tmp=arr2sql($array);
+            $sql=$sql ." WHERE ".join(" AND ", $tmp);
+        }else{
+            $sql .=$array;
+        }
+        $sql .=$str;
+    
+
+    // echo $sql;
+    $rows=$this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
+
+}
+
+$Item = new DB('items');
+
+dd($Item->all());
 
 ?>
