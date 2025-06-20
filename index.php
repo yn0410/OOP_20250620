@@ -67,19 +67,31 @@
     <h2>繼承</h2>
     <?php
 
-    class Man extends Person{
+    Interface PersonInterface{
+        public function getGender();
+        public function say();
+    }
+
+    // extends 繼承 & implements 介面
+    class Man extends Person implements PersonInterface{
         private $gender = '男性';
 
         function getGender(){
             return $this->gender;
         }
+        function say(){
+            //  一定要有PersonInterface裡的function，但內容可為空
+        }
     }
 
-    class WoMan extends Person{
+    class WoMan extends Person implements PersonInterface{
         private $gender = '女性';
 
         function getGender(){
             return $this->gender;
+        }
+        function say(){
+
         }
     }
 
