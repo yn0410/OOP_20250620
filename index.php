@@ -66,13 +66,38 @@
     <hr>
     <h2>繼承</h2>
     <?php
-    class Man extends Person{
 
+    class Man extends Person{
+        private $gender = '男性';
+
+        function getGender(){
+            return $this->gender;
+        }
     }
+
+    class WoMan extends Person{
+        private $gender = '女性';
+
+        function getGender(){
+            return $this->gender;
+        }
+    }
+
     $man = new Man('John', 25);
     echo $man->getName();
     echo "<br>";
+    echo $man->getGender();
+    echo "<br>";
     $man->greet();
+    echo "<br>";
+
+    $woman = new WoMan('Jane', 22);
+    echo $woman->getName();
+    echo "<br>";
+    echo $woman->getGender();
+    echo "<br>";
+    $woman->greet();
+    echo "<br>";
 
 
 
