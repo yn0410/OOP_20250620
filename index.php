@@ -63,6 +63,30 @@
     $jason->greet();
 
     ?>
+    <hr>
+    <h2>繼承</h2>
+    <?php
+    class Man extends Person{
+
+    }
+    $man = new Man('John', 25);
+    echo $man->getName();
+    echo "<br>";
+    $man->greet();
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ?>
 </body>
 
 </html>
