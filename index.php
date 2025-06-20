@@ -75,6 +75,7 @@
     // extends 繼承 & implements 介面
     class Man extends Person implements PersonInterface{
         private $gender = '男性';
+        public static $skin='yellow';
 
         function getGender(){
             return $this->gender;
@@ -82,16 +83,25 @@
         function say(){
             //  一定要有PersonInterface裡的function，但內容可為空
         }
+
+        static function getSkin(){
+            return self::$skin;
+        }
     }
 
     class WoMan extends Person implements PersonInterface{
         private $gender = '女性';
+        public static $skin='white';
 
         function getGender(){
             return $this->gender;
         }
         function say(){
 
+        }
+
+        static function getSkin(){
+            return self::$skin;
         }
     }
 
@@ -101,7 +111,13 @@
     echo $man->getGender();
     echo "<br>";
     $man->greet();
+
+    echo Man::$skin; //static 不new過就可以用了
     echo "<br>";
+    echo Man::getSkin(); //static 不new過就可以用了
+    echo "<br>";
+    echo "<br>";
+
 
     $woman = new WoMan('Jane', 22);
     echo $woman->getName();
