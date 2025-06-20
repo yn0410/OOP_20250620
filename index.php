@@ -9,6 +9,7 @@
 
 <body>
     <?php
+    // class=類別
     class Person {
         // 成員，屬性
         public $name;
@@ -16,7 +17,7 @@
 
         // 方法，行為，建構函式 &__construct=建構子
         public function __construct($name, $age){
-            $this->name = $name;
+            $this->name = $name; //$this = Person (?)
             $this->age = $age;
         }
 
@@ -27,7 +28,7 @@
         
     }
 
-    $jason = new Person('jason', 18);
+    $jason = new Person('jason', 18); //$jason是個物件(?)
     echo $jason->name;
     echo "<br>";
     echo $jason->age;
