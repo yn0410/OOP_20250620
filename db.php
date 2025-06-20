@@ -8,22 +8,6 @@ update()-給定資料表的條件後，會去更新相應的資料。
 insert()-給定資料內容後，會去新增資料到資料表
 del()-給定條件後，會去刪除指定的資料 */
 
-/* 修改all()
-all($table);
-all($table,$array=[]);
-all($table,$array,$str);
-all($table,$str); */
-
-/* function all($table, $where=null){ //"參數=null"表示預設值=null，呼叫函式時，可寫可不寫這個參數，不寫加此參數就是預設值去呼叫此function
-    // echo "回傳資料表 $table 的所有資料";
-    global $pdo;
-    $sql="SELECT * FROM $table $where";
-    echo $sql;
-    $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-
-    return $rows;
-} */
-
 function all($table, $array=null, $str=null){
     global $pdo;
     $sql="SELECT * FROM $table ";
@@ -58,10 +42,6 @@ function find($table, $id){
     global $pdo;
 
     if(is_array($id)){
-        /* $tmp=[];
-        foreach($id as $key=>$value){
-            $tmp[]="`$key`='$value'";
-        } */
        $tmp=arr2sql($id);
         $sql="SELECT * FROM $table WHERE ".join(" AND ", $tmp);
     }else{
@@ -73,30 +53,6 @@ function find($table, $id){
 
 function update($table, $data){
     global $pdo;
-    /* $data=[`id`=>5,
-            `name`=>'蘿蔔糕',
-            `cost`=>'12',
-            `stock`=>'100',
-            `price`=>'35'
-    ];
-    $data['price']=40;
-    $data=[`id`=>5,
-            `name`=>'蘿蔔糕',
-            `cost`=>'12',
-            `stock`=>'100',
-            `price`=>'40'
-    ];
-    $sql="UPDATE $table SET [`name`=>'xxx',
-                            `cost`=>'yyy',
-                            `stock`=>'zzz',
-                            `price`=>'aaa']
-                        WHERE id='{$id['id']}'"; */
-    /* $tmp=[];
-        foreach($data as $key=>$value){
-            if($key!='id'){
-                $tmp[]="`$key`='$value'";
-            }
-        } */
     $tmp=arr2sql($data);
 
     $sql="UPDATE $table SET ".join(" , ", $tmp)." WHERE id='{$data['id']}'";
